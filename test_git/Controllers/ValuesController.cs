@@ -16,7 +16,7 @@ namespace test_git.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { User.Identity.Name, User.Identity.AuthenticationType, User.Identity.IsAuthenticated.ToString() };
         }
 
         // GET api/values/5
