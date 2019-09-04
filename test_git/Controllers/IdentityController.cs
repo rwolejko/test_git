@@ -16,7 +16,8 @@ namespace test_git.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { User.Identity.Name, User.Identity.AuthenticationType, User.Identity.IsAuthenticated.ToString() };
+            return new string[] { User.Identity.Name, User.Identity.AuthenticationType, User.Identity.IsAuthenticated.ToString(),
+            HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(), HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()};
         }
 
         // GET api/values/5
@@ -34,6 +35,12 @@ namespace test_git.Controllers
                     break;
                 case 3:
                     s = User.Identity.IsAuthenticated.ToString();
+                    break;
+                case 4:
+                    s = HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+                    break;
+                case 5:
+                    s = HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString();
                     break;
                 default:
                     s = "NotFound";
